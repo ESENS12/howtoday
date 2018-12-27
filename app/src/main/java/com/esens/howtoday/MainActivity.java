@@ -10,6 +10,12 @@ import android.support.v7.widget.Toolbar;
 import android.support.v13.app.FragmentPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
+
+    // 시작시간, 끝시간 지정 기능 (timepicker로 구현)
+    // 다이어리 기능
+    // Service로 android 화면 on off 감지 기능 (핸드폰 사용 시간 제공 등등..)
+    // Service로 사운드 감지 기능
+
     ViewPager viewPager;
 
     PickerAdapter adapter;

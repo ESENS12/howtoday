@@ -45,23 +45,19 @@ public class TimePickerFragment extends Fragment implements TimePickerDialog.OnT
             public void onClick(View v) {
                 Calendar now = Calendar.getInstance();
                 Log.d("ESENS","timeButton OnClick!");
-                /*
-                It is recommended to always create a new instance whenever you need to show a Dialog.
-                The sample app is reusing them because it is useful when looking for regressions
-                during testing
-                 */
+
                 if (tpd == null) {
-                    //Log.d("ESENS","tpd is null called timepickerDialog");
+                    Log.d("ESENS","tpd is null called timepickerDialog");
                     tpd = TimePickerDialog.newInstance(
                             TimePickerFragment.this,
                             now.get(Calendar.HOUR_OF_DAY),
-                            0, //걍 초기화 할때 0으루 줘도 됨
+                            0, //초기화 할때 0으로 줘도 됨.
                             //now.get(Calendar.MINUTE),
                             //mode24Hours.isChecked()
                             false
                     );
-                    //여기서 minute 제어 해도 되고
-                    //tpd.setStartTime(now.get(Calendar.HOUR_OF_DAY),0);
+                    //tpd 시작시 보여지는 시간, 여기서 따로 제어 해도 되지만 deprecated 그러므로 init할 때 지정하는 방식이 권유됨
+                    //tpd.setStartTime(now.get(Calendar.HOUR_OF_DAY),0,0);
 
                 } else {
                     //Log.d("ESENS","tpd is not null");
@@ -136,8 +132,9 @@ public class TimePickerFragment extends Fragment implements TimePickerDialog.OnT
     public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
         String hourString = hourOfDay < 10 ? "0"+hourOfDay : ""+hourOfDay;
         String minuteString = minute < 10 ? "0"+minute : ""+minute;
-        String secondString = second < 10 ? "0"+second : ""+second;
-        String time = "선택한 시간 : "+hourString+"h"+minuteString+"m"+secondString+"s";
+        //String secondString = second < 10 ? "0"+second : ""+second;
+        //second는 보여줄 필요가 없음.
+        String time = "선택한 시간 : "+hourString+"h"+minuteString+"m";
         timeTextView.setText(time);
     }
 }
